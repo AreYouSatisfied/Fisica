@@ -13,7 +13,7 @@
 </head>
 <body>
     <nav class="navbar navbar">
-        <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron jumbotron-fluid" >
             <div class="container">
               <h1 class="display-4">Fisica</h1>
               <p class="lead">La física es una ciencia que estudia sistemáticamente los fenómenos naturales, tratando de encontrar las leyes básicas que los rigen. Utiliza las matemáticas como su lenguaje y combina estudios teóricos con experimentales para obtener las leyes correctas.</p>
@@ -53,10 +53,11 @@
                 <input type="button" value="Calcular" onclick="Calcular()">
     
               </form>
+              <p id="resultado"></p>
     
-              <p style="color:#55695f ;">Velocidad: <span id="velocidad"></span></p>
-              <p style="color:#55695f ;">Aceleracion: <span id="aceleracion"></span></p>
-              <p style="color:#55695f ;">Rapidez: <span id="rapidez"></span></p>
+              <p style="color:#55695f;">Velocidad: <span id="velocidad"></span></p>
+              <p style="color:#55695f;">Aceleracion: <span id="aceleracion"></span></p>
+              <p style="color:#55695f;">Rapidez: <span id="rapidez"></span></p>
             </nav>
             </div>
           </div>
@@ -94,12 +95,33 @@
                 let rapidez = 0;
                 if (velocidadUnidad==='metros_por_segundo'){
                     velocidad = distanciaSI / tiempoSI;
-                    rapidez = velocidad
+                    rapidez = velocidad //esta no es la formula
                     aceleracion = velocidad/tiempoSI
                 }
                 else if (velocidadUnidad==='pies_por_segundo'){
-
+                    velocidad = (distanciaSI*3.281) / tiempoSI;
+                    rapidez = velocidad //esta no es la formula
+                    aceleracion = velocidad/tiempoSI
                 }
+                else if (velocidadUnidad==='kilometros_por_hora'){
+                    velocidad = (distanciaSI/1000) / (tiempoSI/3600);
+                    rapidez = velocidad //esta no es la formula
+                    aceleracion = velocidad/tiempoSI
+                }
+                else if (velocidadUnidad==='millas_por_hora'){
+                    velocidad = (distanciaSI*1609) / (tiempoSI*3600);
+                    rapidez = velocidad //esta no es la formula
+                    aceleracion = velocidad/tiempoSI
+                }
+
+                //Mostrar los resultados
+                let resultados = '';
+
+                document.getElementById('velocidad').textContent=velocidad.toFixed(2) + ' ' + velocidadUnidad;
+                document.getElementById('aceleracion').textContent=aceleracion.toFixed(2) + ' ' + velocidadUnidad;
+                document.getElementById('rapidez').textContent=rapidez.toFixed(2) + ' ' + velocidadUnidad;
+
+                document.getElementById('resultado').innerHTML=resultados;
 
             }
             
